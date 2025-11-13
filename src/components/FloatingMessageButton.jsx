@@ -24,7 +24,7 @@ export default function FloatingMessageButton() {
     e.preventDefault();
     try {
       const res = await fetch(
-        "https://xpertstrikes-backend.onrender.com/api/contact",
+        "https://xpertstrikes-backend-f4fj.onrender.com/api/contact",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
