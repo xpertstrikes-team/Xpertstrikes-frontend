@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import member1 from "../assets/narasimma photo.jpg"
+import member2 from "../assets/sanjay photo.jpg"
+import member3 from "../assets/nimal photo.jpg"
+import member4 from "../assets/tamil photo.jpg";
 
 // 🧠 Sample Team Data
 const team = [
@@ -8,84 +12,84 @@ const team = [
     name: "Lakshmi Narasimma",
     role: "Founder & CEO",
     qualification: "B.Tech IT",
-    team: "Data Gurus",
+    team: "Data Gurus & Team Alpha",
     description:
       "A passionate innovator leading XpertStrikes with a vision to revolutionize SaaS through AI and automation.",
     email: "mrlakshminarasimma@gmail.com",
     phone: "+91 80154 09798",
-    image: "https://i.pravatar.cc/200?img=11",
+    image: member1,
   },
   {
     id: 2,
-    name: "Arun Raj",
-    role: "Full Stack Developer",
-    qualification: "B.Tech CSE",
-    team: "Web & Backend Development",
+    name: "Sanjay",
+    role: "Mobile App Developer",
+    qualification: "B.Tech IT",
+    team: "App Masters & Wordsmiths",
     description:
       "Expert in MERN stack and backend architecture. Ensures scalable, secure, and fast applications.",
-    email: "arun@xpertstrikes.com",
-    phone: "+91 98765 43211",
-    image: "https://i.pravatar.cc/200?img=22",
+    email: "sanjayashwin18@gmail.com",
+    phone: "+91 99622 17696",
+    image: member2,
   },
   {
     id: 3,
-    name: "Priya Sharma",
-    role: "UI/UX Designer",
-    qualification: "B.Des Interaction Design",
-    team: "Design & Branding",
+    name: "Nimalesh",
+    role: "Full Stack Developer",
+    qualification: "B.Tech IT",
+    team: "Team Alpha & Media Team",
     description:
       "Designs seamless digital experiences with a focus on accessibility and visual harmony.",
-    email: "priya@xpertstrikes.com",
-    phone: "+91 98765 43212",
-    image: "https://i.pravatar.cc/200?img=32",
+    email: "rnimales404@gmail.com",
+    phone: "+91 63828 49828",
+    image: member3,
   },
   {
     id: 4,
-    name: "Rahul Mehta",
-    role: "ML Engineer",
-    qualification: "B.Tech AI & DS",
-    team: "AI & Machine Learning",
+    name: "Tamilarasu",
+    role: "Data Scientist",
+    qualification: "B.Tech IT",
+    team: "Data gurus & Media team",
     description:
       "Focuses on model optimization and data-driven intelligence for next-gen business tools.",
-    email: "rahul@xpertstrikes.com",
-    phone: "+91 98765 43213",
-    image: "https://i.pravatar.cc/200?img=41",
+    email: "vishalion2311@gmail.com",
+    phone: "+91 93612 36616",
+    image: member4,
   },
   {
     id: 5,
-    name: "Divya Patel",
-    role: "Marketing Strategist",
-    qualification: "MBA Digital Marketing",
-    team: "Marketing & Outreach",
+    name: "Sakthi Shree",
+    role: "UI/UX Designer",
+    qualification: "B. Tech IT",
+    team: "UX Wizard & Design Pros",
     description:
       "Leads creative campaigns and brand growth strategies to expand product reach.",
     email: "divya@xpertstrikes.com",
     phone: "+91 98765 43214",
-    image: "https://i.pravatar.cc/200?img=45",
+    image: "",
   },
   {
     id: 6,
-    name: "Vikram Singh",
-    role: "Mobile App Developer",
+    name: "Kumaran",
+    role: "Content Writer",
     qualification: "B.Tech IT",
-    team: "Mobile Development",
+    team: "Wordsmiths & Design Pros",
     description:
       "Creates fast, reliable, and intuitive mobile apps that deliver seamless user experiences.",
     email: "vikram@xpertstrikes.com",
     phone: "+91 98765 43215",
-    image: "https://i.pravatar.cc/200?img=52",
+    image: "",
   },
   {
     id: 7,
-    name: "Nisha Reddy",
-    role: "Project Manager",
-    qualification: "MBA Project Management",
-    team: "Operations & Coordination",
+    name: "Vishnu Pradhap",
+    role: "Web Developer",
+    qualification: "B. Tech IT",
+    team: "Team Alpha & Wordsmiths",
     description:
       "Ensures timely project delivery with strong coordination and process optimization.",
     email: "nisha@xpertstrikes.com",
     phone: "+91 98765 43216",
-    image: "https://i.pravatar.cc/200?img=60",
+    image: "",
   },
 ];
 

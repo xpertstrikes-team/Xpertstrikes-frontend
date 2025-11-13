@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { FaLinkedin, FaInstagram, FaGithub, FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
+import {
+  FaLinkedin,
+  FaInstagram,
+  FaGithub,
+  FaEnvelope,
+  FaPhoneAlt,
+  FaMapMarkerAlt,
+} from "react-icons/fa";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -16,18 +23,46 @@ const Contact = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  // inside Contact.jsx component
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Contact form data:", formData);
-    alert("Thank you for contacting XpertStrikes! We'll reach out soon.");
-    setFormData({
-      name: "",
-      company: "",
-      email: "",
-      phone: "",
-      service: "",
-      message: "",
-    });
+
+    const payload = {
+      name: formData.name,
+      company: formData.company,
+      email: formData.email,
+      phone: formData.phone,
+      service: formData.service,
+      message: formData.message,
+    };
+
+    try {
+      const res = await fetch(
+        "https://xpertstrikes-backend.onrender.com/api/contact",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        }
+      );
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Failed to submit");
+
+      // success UI
+      alert(data.message || "Submitted successfully");
+      setFormData({
+        name: "",
+        company: "",
+        email: "",
+        phone: "",
+        service: "",
+        message: "",
+      });
+    } catch (err) {
+      console.error("Submit error:", err);
+      alert("Failed to submit form. Try again.");
+    }
   };
 
   return (
@@ -49,23 +84,45 @@ const Contact = () => {
           Get in <span className="text-blue-500">Touch</span>
         </h2>
         <p className="text-gray-300 text-lg mb-8">
-          We'd love to hear from you! Whether you’re looking for a service, partnership, or just have a question — we’re here.
+          We'd love to hear from you! Whether you’re looking for a service,
+          partnership, or just have a question — we’re here.
         </p>
 
         <div className="space-y-4 text-gray-200">
-          <p className="flex items-center gap-3"><FaEnvelope className="text-blue-400" /> support@xpertstrikes.com</p>
-          <p className="flex items-center gap-3"><FaPhoneAlt className="text-blue-400" /> +91 98765 43210</p>
-          <p className="flex items-center gap-3"><FaMapMarkerAlt className="text-blue-400" /> Chennai, India</p>
+          <p className="flex items-center gap-3">
+            <FaEnvelope className="text-blue-400" /> support@xpertstrikes.com
+          </p>
+          <p className="flex items-center gap-3">
+            <FaPhoneAlt className="text-blue-400" /> +91 98765 43210
+          </p>
+          <p className="flex items-center gap-3">
+            <FaMapMarkerAlt className="text-blue-400" /> Chennai, India
+          </p>
         </div>
 
         <div className="flex gap-5 mt-8 justify-center md:justify-start">
-          <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="text-blue-400 hover:text-white text-2xl transition-all duration-300">
+          <a
+            href="https://linkedin.com"
+            target="_blank"
+            rel="noreferrer"
+            className="text-blue-400 hover:text-white text-2xl transition-all duration-300"
+          >
             <FaLinkedin />
           </a>
-          <a href="https://instagram.com" target="_blank" rel="noreferrer" className="text-blue-400 hover:text-white text-2xl transition-all duration-300">
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            rel="noreferrer"
+            className="text-blue-400 hover:text-white text-2xl transition-all duration-300"
+          >
             <FaInstagram />
           </a>
-          <a href="https://github.com" target="_blank" rel="noreferrer" className="text-blue-400 hover:text-white text-2xl transition-all duration-300">
+          <a
+            href="https://github.com"
+            target="_blank"
+            rel="noreferrer"
+            className="text-blue-400 hover:text-white text-2xl transition-all duration-300"
+          >
             <FaGithub />
           </a>
         </div>
@@ -79,16 +136,50 @@ const Contact = () => {
         transition={{ duration: 1, ease: "easeOut" }}
         className="glass p-8 md:p-10 rounded-2xl flex-1 w-full max-w-lg shadow-2xl"
       >
-        <h3 className="text-3xl font-semibold mb-6 text-blue-300 text-center">Contact Us</h3>
+        <h3 className="text-3xl font-semibold mb-6 text-blue-300 text-center">
+          Contact Us
+        </h3>
 
         <div className="grid text-gray-300 md:grid-cols-2 gap-4">
-          <input type="text" name="name" placeholder="Your Name" value={formData.name} onChange={handleChange} required className="p-3 rounded-lg bg-transparent border border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400" />
-          <input type="text" name="company" placeholder="Company Name" value={formData.company} onChange={handleChange} required className="p-3 rounded-lg bg-transparent border border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+          <input
+            type="text"
+            name="name"
+            placeholder="Your Name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+            className="p-3 rounded-lg bg-transparent border border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+          <input
+            type="text"
+            name="company"
+            placeholder="Company Name"
+            value={formData.company}
+            onChange={handleChange}
+            required
+            className="p-3 rounded-lg bg-transparent border border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
         </div>
 
         <div className="grid text-gray-300 md:grid-cols-2 gap-4 mt-4">
-          <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required className="p-3 rounded-lg bg-transparent border border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400" />
-          <input type="tel" name="phone" placeholder="Phone Number" value={formData.phone} onChange={handleChange} required className="p-3 rounded-lg bg-transparent border border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            className="p-3 rounded-lg bg-transparent border border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+          <input
+            type="tel"
+            name="phone"
+            placeholder="Phone Number"
+            value={formData.phone}
+            onChange={handleChange}
+            required
+            className="p-3 rounded-lg bg-transparent border border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
         </div>
 
         <select
@@ -100,11 +191,12 @@ const Contact = () => {
         >
           <option value="">Select Service</option>
           <option value="Web Development">Web Development</option>
-          <option value="AI Integration">AI Integration</option>
+          <option value="Graphic Design">Graphic Design</option>
+          <option value="Video & Photo Editing">Video & Photo Editing</option>
           <option value="UI/UX Design">UI/UX Design</option>
-          <option value="Cloud Solutions">Cloud Solutions</option>
-          <option value="App Development">App Development</option>
-          <option value="Automation">Automation</option>
+          <option value="Content Writing">Content Writing</option>
+          <option value="Data Analytics">Data Analytics</option>
+          <option value="Mobile App Development">Mobile App Development</option>
         </select>
 
         <textarea

@@ -5,8 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function FloatingMessageButton() {
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
-    personName: "",
-    companyName: "",
+    name: "",
+    company: "",
     email: "",
     phone: "",
     service: "",
@@ -20,19 +20,33 @@ export default function FloatingMessageButton() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Client message:", formData);
-    alert("Message sent successfully!"); // temporary confirmation
-    setFormData({
-      personName: "",
-      companyName: "",
-      email: "",
-      phone: "",
-      service: "",
-      requirements: "",
-    });
-    setIsOpen(false);
+    try {
+      const res = await fetch(
+        "https://xpertstrikes-backend.onrender.com/api/contact",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        }
+      );
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Submission failed");
+      alert(data.message || "Message sent");
+      setFormData({
+        personName: "",
+        companyName: "",
+        email: "",
+        phone: "",
+        service: "",
+        requirements: "",
+      });
+      setIsOpen(false);
+    } catch (err) {
+      console.error(err);
+      alert("Failed to send message");
+    }
   };
 
   return (
@@ -44,7 +58,11 @@ export default function FloatingMessageButton() {
         onClick={toggleForm}
         className="bg-blue-600 text-white p-4 rounded-full shadow-lg flex items-center justify-center"
       >
-        {isOpen ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}
+        {isOpen ? (
+          <X className="w-6 h-6" />
+        ) : (
+          <MessageCircle className="w-6 h-6" />
+        )}
       </motion.button>
 
       {/* Contact Form Popup */}
@@ -104,11 +122,12 @@ export default function FloatingMessageButton() {
               >
                 <option value="">Select Service</option>
                 <option value="Web Development">Web Development</option>
-                <option value="App Development">App Development</option>
+                <option value="Graphic Design">Graphic Design</option>
+                <option value="Video & Photo Editing">Video & Photo Editing</option>
                 <option value="UI/UX Design">UI/UX Design</option>
-                <option value="AI & ML">AI & ML</option>
-                <option value="Cloud Services">Cloud Services</option>
-                <option value="Cyber Security">Cyber Security</option>
+                <option value="Content Writing">Content Writing</option>
+                <option value="Data Analytics">Data Analytics</option>
+                <option value="Mobile App Development">Mobile App Development</option>
               </select>
               <textarea
                 name="requirements"
