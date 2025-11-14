@@ -90,10 +90,10 @@ const Contact = () => {
 
         <div className="space-y-4 text-gray-200">
           <p className="flex items-center gap-3">
-            <FaEnvelope className="text-blue-400" /> support@xpertstrikes.com
+            <FaEnvelope className="text-blue-400" /> Xpertstrikes@gmail.com
           </p>
           <p className="flex items-center gap-3">
-            <FaPhoneAlt className="text-blue-400" /> +91 98765 43210
+            <FaPhoneAlt className="text-blue-400" /> +91 80154 09798
           </p>
           <p className="flex items-center gap-3">
             <FaMapMarkerAlt className="text-blue-400" /> Chennai, India
@@ -102,7 +102,7 @@ const Contact = () => {
 
         <div className="flex gap-5 mt-8 justify-center md:justify-start">
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/mr-narasimma"
             target="_blank"
             rel="noreferrer"
             className="text-blue-400 hover:text-white text-2xl transition-all duration-300"
@@ -110,7 +110,7 @@ const Contact = () => {
             <FaLinkedin />
           </a>
           <a
-            href="https://instagram.com"
+            href="https://www.instagram.com/xpertstrikes?igsh=MTZwbHd6dDBzNHhlZg=="
             target="_blank"
             rel="noreferrer"
             className="text-blue-400 hover:text-white text-2xl transition-all duration-300"
@@ -118,7 +118,7 @@ const Contact = () => {
             <FaInstagram />
           </a>
           <a
-            href="https://github.com"
+            href="https://github.com/xpertstrikes-team"
             target="_blank"
             rel="noreferrer"
             className="text-blue-400 hover:text-white text-2xl transition-all duration-300"
