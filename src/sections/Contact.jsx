@@ -68,7 +68,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="min-h-screen flex flex-col md:flex-row items-center justify-center gap-12 px-6 md:px-16 py-24 bg-transparent relative"
+      className="min-h-screen flex flex-col lg:flex-row items-center justify-center gap-12 px-6 md:px-16 py-24 bg-transparent relative"
     >
       {/* ✨ Glow Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-900/10 to-blue-950/40 blur-3xl -z-10"></div>

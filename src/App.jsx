@@ -5,6 +5,7 @@ import Services from "./sections/Services";
 import Members from "./sections/MemberSection";
 import FloatingMessageButton from "./components/FloatingMessageButton";
 import Contact from "./sections/Contact";
+import Footer from "./sections/Footer";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
       <Members />
       <FloatingMessageButton />
       <Contact />
+      <Footer />
     </div>
   );
 }
