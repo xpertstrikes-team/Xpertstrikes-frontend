@@ -30,12 +30,12 @@ const Navbar = () => {
 
       {/* Mobile Dropdown */}
       {open && (
-        <div className="md:hidden glass mx-6 my-2 p-4 rounded-lg flex flex-col space-y-3 text-center">
-          <a href="#home" className="text-gray-200 hover:text-blue-400 transition duration-300" onClick={() => setOpen(false)}>Home</a>
-          <a href="#about" className="text-gray-200 hover:text-blue-400 transition duration-300" onClick={() => setOpen(false)}>About</a>
-          <a href="#services" className="text-gray-200 hover:text-blue-400 transition duration-300" onClick={() => setOpen(false)}>Services</a>
-          <a href="#members" className="text-gray-200 hover:text-blue-400 transition duration-300" onClick={() => setOpen(false)}>Members</a>
-          <a href="#contact" className="text-gray-200 hover:text-blue-400 transition duration-300" onClick={() => setOpen(false)}>Contact</a>
+        <div className="md:hidden bg-gray-400/70 mx-6 my-2 p-4 rounded-lg flex flex-col space-y-3 text-center">
+          <a href="#home" className="text-blue-300 hover:text-blue-500 transition duration-300" onClick={() => setOpen(false)}>Home</a>
+          <a href="#about" className="text-blue-300 hover:text-blue-500 transition duration-300" onClick={() => setOpen(false)}>About</a>
+          <a href="#services" className="text-blue-300 hover:text-blue-500 transition duration-300" onClick={() => setOpen(false)}>Services</a>
+          <a href="#members" className="text-blue-300 hover:text-blue-500 transition duration-300" onClick={() => setOpen(false)}>Members</a>
+          <a href="#contact" className="text-blue-300 hover:text-blue-500 transition duration-300" onClick={() => setOpen(false)}>Contact</a>
         </div>
       )}
     </nav>
