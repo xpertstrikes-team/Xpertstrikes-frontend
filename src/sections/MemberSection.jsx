@@ -98,7 +98,7 @@ const MembersSection = () => {
 
   return (
     <section
-      id="team"
+      id="members"
       className="min-h-screen px-6 md:px-16 py-24 bg-transparent text-center relative"
     >
       {/* ✨ Header */}
