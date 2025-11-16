@@ -1,3 +1,11 @@
+import { Helmet } from "react-helmet";
+
+<Helmet>
+  <title>Our Services | XpertStrikes</title>
+  <meta name="description" content="Explore XpertStrikes services: Web development, UI/UX design, Video editing, Graphic design, Cloud integration, Data analytics, and Mobile development." />
+  <meta name="keywords" content="XpertStrikes services, web development services, UI/UX design, mobile app services, SaaS services" />
+</Helmet>
+
 import React, { useState } from "react";
 import servicesData from "../data/servicesData";
 import ServiceModal from "../components/ServiceModal";

@@ -1,4 +1,14 @@
-import React from "react"; // 🔹 Add your video file here
+import React from "react"; 
+
+import { Helmet } from "react-helmet";
+
+<Helmet>
+  <title>XpertStrikes | SaaS Solutions, Web Development & IT Services</title>
+  <meta name="description" content="XpertStrikes offers SaaS solutions, Web Development, Mobile Apps, UI/UX Design, Automation, and IT services with modern cloud technologies." />
+  <meta name="keywords" content="XpertStrikes, SaaS, web development, mobile app development, IT company, software services, India SaaS startup" />
+</Helmet>
+
+// 🔹 Add your video file here
 
 const Hero = () => {
   return (

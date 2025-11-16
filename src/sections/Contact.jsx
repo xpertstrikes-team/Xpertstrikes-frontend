@@ -1,3 +1,11 @@
+import { Helmet } from "react-helmet";
+
+<Helmet>
+  <title>Contact XpertStrikes</title>
+  <meta name="description" content="Get in touch with XpertStrikes for SaaS solutions, development projects, and IT services. We respond within 24 hours." />
+  <meta name="keywords" content="contact XpertStrikes, SaaS company contact, IT service support" />
+</Helmet>
+
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import {
