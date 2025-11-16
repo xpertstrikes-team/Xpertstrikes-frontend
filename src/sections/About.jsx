@@ -1,3 +1,11 @@
+import { Helmet } from "react-helmet";
+
+<Helmet>
+  <title>About XpertStrikes | SaaS Solutions & IT Services</title>
+  <meta name="description" content="XpertStrikes is a SaaS and IT solutions company offering cloud, AI-driven tools, automation, and modern web development." />
+  <meta name="keywords" content="XpertStrikes, SaaS company, web development, IT services, cloud services, software company" />
+</Helmet>
+
 import React from "react";
 import aboutImg from "../assets/hero12.jpg";
 import ScrollAnimationWrapper from "../components/ScrollAnimationWrapper";
