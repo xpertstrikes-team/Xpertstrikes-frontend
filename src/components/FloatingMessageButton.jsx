@@ -35,8 +35,8 @@ export default function FloatingMessageButton() {
       if (!res.ok) throw new Error(data.error || "Submission failed");
       alert(data.message || "Message sent");
       setFormData({
-        personName: "",
-        companyName: "",
+        name: "",
+        company: "",
         email: "",
         phone: "",
         service: "",
@@ -82,7 +82,7 @@ export default function FloatingMessageButton() {
             <form onSubmit={handleSubmit} className="space-y-3">
               <input
                 type="text"
-                name="personName"
+                name="name"
                 placeholder="Your Name"
                 value={formData.personName}
                 onChange={handleChange}
@@ -91,7 +91,7 @@ export default function FloatingMessageButton() {
               />
               <input
                 type="text"
-                name="companyName"
+                name="company"
                 placeholder="Company Name"
                 value={formData.companyName}
                 onChange={handleChange}
