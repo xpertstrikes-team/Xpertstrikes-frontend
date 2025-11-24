@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-
+import { MessageCircle, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 export default function FloatingMessageButton() {
   const [isOpen, setIsOpen] = useState(false);
-
   const [formData, setFormData] = useState({
     name: "",
     company: "",
@@ -11,139 +11,147 @@ export default function FloatingMessageButton() {
     service: "",
     requirements: "",
   });
-
+  const toggleForm = () => setIsOpen(!isOpen);
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const payload = {
-      name: formData.name,
-      company: formData.company,
-      email: formData.email,
-      phone: formData.phone,
-      service: formData.service,
-      message: formData.requirements, // 🔥 FIXED
-    };
-
     try {
       const res = await fetch(
         "https://xpertstrikes-backend-f4fj.onrender.com/api/contact",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
+          body: JSON.stringify(formData),
         }
       );
-
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Failed");
-
-      alert("Message sent successfully!");
-      setIsOpen(false);
-
+      if (!res.ok) throw new Error(data.error || "Submission failed");
+      alert(data.message || "Message sent");
       setFormData({
         name: "",
         company: "",
         email: "",
         phone: "",
         service: "",
-        requirements: "",
+        message: "",
       });
+      setIsOpen(false);
     } catch (err) {
+      console.error(err);
       alert("Failed to send message");
     }
   };
-
   return (
-    <>
-      {/* Floating Button */}
-      <button
-        onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 bg-blue-600 text-white p-4 rounded-full shadow-lg"
+    <div className="fixed bottom-10 right-10 z-50">
+      {" "}
+      {/* Floating Button */}{" "}
+      <motion.button
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        onClick={toggleForm}
+        className="bg-blue-600 text-white p-4 rounded-full shadow-lg flex items-center justify-center"
       >
-        Message Us
-      </button>
-
-      {/* Popup Modal */}
-      {isOpen && (
-        <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
-          <div className="bg-white p-6 rounded-lg w-[90%] max-w-md">
-            <h2 className="text-xl font-bold mb-4">Send us a Message</h2>
-
+        {" "}
+        {isOpen ? (
+          <X className="w-6 h-6" />
+        ) : (
+          <MessageCircle className="w-6 h-6" />
+        )}{" "}
+      </motion.button>{" "}
+      {/* Contact Form Popup */}{" "}
+      <AnimatePresence>
+        {" "}
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.3 }}
+            className="absolute bottom-16 -right-10 bg-white/80 backdrop-blur-xl border border-white/30 rounded-2xl shadow-2xl p-6 w-96"
+          >
+            {" "}
+            <h3 className="text-lg font-semibold mb-4 text-gray-800 text-center">
+              {" "}
+              Message XpertStrikes{" "}
+            </h3>{" "}
             <form onSubmit={handleSubmit} className="space-y-3">
+              {" "}
               <input
                 type="text"
-                name="name"
+                name="personName"
                 placeholder="Your Name"
-                value={formData.name} // FIXED
+                value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full p-2 border rounded"
-              />
-
+                className="w-full border border-gray-300 rounded-lg p-2 bg-white/70 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />{" "}
               <input
                 type="text"
-                name="company"
+                name="companyName"
                 placeholder="Company Name"
-                value={formData.company} // FIXED
+                value={formData.company}
                 onChange={handleChange}
-                className="w-full p-2 border rounded"
-              />
-
+                className="w-full border border-gray-300 rounded-lg p-2 bg-white/70 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />{" "}
               <input
                 type="email"
                 name="email"
-                placeholder="Email"
+                placeholder="Email ID"
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full p-2 border rounded"
-              />
-
+                className="w-full border border-gray-300 rounded-lg p-2 bg-white/70 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />{" "}
               <input
-                type="text"
+                type="tel"
                 name="phone"
                 placeholder="Phone Number"
                 value={formData.phone}
                 onChange={handleChange}
-                className="w-full p-2 border rounded"
-              />
-
-              <input
-                type="text"
+                className="w-full border border-gray-300 rounded-lg p-2 bg-white/70 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />{" "}
+              <select
                 name="service"
-                placeholder="Service (Optional)"
                 value={formData.service}
                 onChange={handleChange}
-                className="w-full p-2 border rounded"
-              />
-
+                className="w-full border border-gray-300 rounded-lg p-2 bg-white/70 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                {" "}
+                <option value="">Select Service</option>{" "}
+                <option value="Web Development">Web Development</option>{" "}
+                <option value="Graphic Design">Graphic Design</option>{" "}
+                <option value="Video & Photo Editing">
+                  Video & Photo Editing
+                </option>{" "}
+                <option value="UI/UX Design">UI/UX Design</option>{" "}
+                <option value="Content Writing">Content Writing</option>{" "}
+                <option value="Data Analytics">Data Analytics</option>{" "}
+                <option value="Mobile App Development">
+                  Mobile App Development
+                </option>{" "}
+              </select>{" "}
               <textarea
                 name="requirements"
-                placeholder="Your Message"
-                value={formData.requirements}
+                placeholder="Describe your requirements..."
+                rows="3"
+                value={formData.message}
                 onChange={handleChange}
-                required
-                className="w-full p-2 border rounded h-24"
-              ></textarea>
-
-              <button className="w-full bg-blue-600 text-white py-2 rounded">
-                Send Message
-              </button>
-            </form>
-
-            <button
-              onClick={() => setIsOpen(false)}
-              className="w-full text-red-500 mt-3"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )}
-    </>
+                className="w-full border border-gray-300 rounded-lg p-2 bg-white/70 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              ></textarea>{" "}
+              <button
+                type="submit"
+                className="w-full bg-blue-600 text-white rounded-lg py-2 hover:bg-blue-700 transition"
+              >
+                {" "}
+                Send Message{" "}
+              </button>{" "}
+            </form>{" "}
+          </motion.div>
+        )}{" "}
+      </AnimatePresence>{" "}
+    </div>
   );
 }
