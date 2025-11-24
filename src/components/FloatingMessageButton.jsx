@@ -70,7 +70,7 @@ export default function FloatingMessageButton() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.3 }}
-            className="absolute bottom-16 -right-10 md:right-0 bg-white/80 backdrop-blur-xl border border-white/30 rounded-2xl shadow-2xl p-6 w-96"
+            className="absolute bottom-16 -right-10 md:right-0 lg:right-0 bg-white/80 backdrop-blur-xl border border-white/30 rounded-2xl shadow-2xl p-6 w-96"
           >
             {" "}
             <h3 className="text-lg font-semibold mb-4 text-gray-800 text-center">
