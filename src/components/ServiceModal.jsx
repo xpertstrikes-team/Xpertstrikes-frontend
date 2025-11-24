@@ -7,7 +7,7 @@ const ServiceModal = ({ service, onClose }) => {
     email: "",
     phone: "",
     service: service?.title || "",
-    requirements: "",
+    message: "",
   });
 
   const handleChange = (e) => {
@@ -55,7 +55,7 @@ const ServiceModal = ({ service, onClose }) => {
           <input name="email" onChange={handleChange} value={form.email} className="p-2 rounded-lg bg-white/10 border text-white" placeholder="Email" />
           <input name="phone" onChange={handleChange} value={form.phone} className="p-2 rounded-lg bg-white/10 border text-white" placeholder="Phone" />
           <input name="service" value={service.title} readOnly className="p-2 rounded-lg bg-white/10 border text-white" />
-          <textarea name="requirements" onChange={handleChange} value={form.requirements} className="p-2 rounded-lg bg-white/10 border text-white" placeholder="Requirements..." />
+          <textarea name="requirements" onChange={handleChange} value={form.message} className="p-2 rounded-lg bg-white/10 border text-white" placeholder="Requirements..." />
 
           <button type="submit" className="bg-blue-600 text-white py-2 rounded-lg">Book Now</button>
         </form>

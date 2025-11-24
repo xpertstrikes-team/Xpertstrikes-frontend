@@ -10,7 +10,7 @@ export default function FloatingMessageButton() {
     email: "",
     phone: "",
     service: "",
-    requirements: "",
+    message: "",
   });
 
   const toggleForm = () => setIsOpen(!isOpen);
@@ -40,7 +40,7 @@ export default function FloatingMessageButton() {
         email: "",
         phone: "",
         service: "",
-        requirements: "",
+        message: "",
       });
       setIsOpen(false);
     } catch (err) {
@@ -84,7 +84,7 @@ export default function FloatingMessageButton() {
                 type="text"
                 name="name"
                 placeholder="Your Name"
-                value={formData.personName}
+                value={formData.name}
                 onChange={handleChange}
                 required
                 className="w-full border border-gray-300 rounded-lg p-2 bg-white/70 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -93,7 +93,7 @@ export default function FloatingMessageButton() {
                 type="text"
                 name="company"
                 placeholder="Company Name"
-                value={formData.companyName}
+                value={formData.company}
                 onChange={handleChange}
                 className="w-full border border-gray-300 rounded-lg p-2 bg-white/70 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
@@ -133,7 +133,7 @@ export default function FloatingMessageButton() {
                 name="requirements"
                 placeholder="Describe your requirements..."
                 rows="3"
-                value={formData.requirements}
+                value={formData.message}
                 onChange={handleChange}
                 className="w-full border border-gray-300 rounded-lg p-2 bg-white/70 focus:outline-none focus:ring-2 focus:ring-blue-500"
               ></textarea>
