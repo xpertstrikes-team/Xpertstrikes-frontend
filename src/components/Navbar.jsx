@@ -11,7 +11,7 @@ const Navbar = () => {
         </h1>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-8 text-lg font-medium">
+        <ul className="hidden lg:flex space-x-8 text-lg font-medium">
           <li className="text-gray-200 hover:text-blue-400 transition duration-300">
             <a href="#home">Home</a>
           </li>
@@ -35,7 +35,7 @@ const Navbar = () => {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setOpen(!open)}
-          className="md:hidden text-blue-400 border border-blue-400 px-3 py-2 rounded-lg hover:bg-blue-400 hover:text-white transition"
+          className="lg:hidden text-blue-400 border border-blue-400 px-3 py-2 rounded-lg hover:bg-blue-400 hover:text-white transition"
         >
           ☰
         </button>
@@ -43,7 +43,7 @@ const Navbar = () => {
 
       {/* Mobile Dropdown */}
       {open && (
-        <div className="md:hidden bg-gray-400/70 mx-6 my-2 p-4 rounded-lg flex flex-col space-y-3 text-center">
+        <div className="lg:hidden bg-gray-400/70 mx-6 my-2 p-4 rounded-lg flex flex-col space-y-3 text-center">
           <a
             href="#home"
             className="text-blue-300 hover:text-blue-500 transition duration-300"
