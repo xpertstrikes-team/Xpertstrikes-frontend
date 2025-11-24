@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 
-
 export default function AdminDashboard() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -8,6 +7,12 @@ export default function AdminDashboard() {
   const BACKEND_URL = "https://xpertstrikes-backend-f4fj.onrender.com";
 
   // Fetch data from backend
+
+  const logout = () => {
+    localStorage.removeItem("adminAuth");
+    window.location.href = "/admin";
+  };
+
   const fetchData = async () => {
     try {
       const res = await fetch(`${BACKEND_URL}/api/contact`);
@@ -21,19 +26,18 @@ export default function AdminDashboard() {
   };
 
   useEffect(() => {
-  const token = localStorage.getItem("adminToken");
+    const token = localStorage.getItem("adminToken");
 
-  if (!token) return (window.location.href = "/admin/login");
+    if (!token) return (window.location.href = "/admin/login");
 
-  fetch("https://xpertstrikes-backend-f4fj.onrender.com/api/admin/verify", {
-    headers: { Authorization: `Bearer ${token}` },
-  })
-    .then((r) => r.json())
-    .then((d) => {
-      if (!d.success) window.location.href = "/admin/login";
-    });
-}, []);
-
+    fetch("https://xpertstrikes-backend-f4fj.onrender.com/api/admin/verify", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((r) => r.json())
+      .then((d) => {
+        if (!d.success) window.location.href = "/admin/login";
+      });
+  }, []);
 
   useEffect(() => {
     fetchData();
@@ -80,13 +84,12 @@ export default function AdminDashboard() {
       )}
 
       <div className="flex justify-center mt-6">
-        <a
-          href="/admin"
-          className="bg-red-600 px-4 py-2 rounded hover:bg-red-700"
-          onClick={() => localStorage.removeItem("admin")}
+        <button
+          onClick={logout}
+          className="bg-red-600 text-white px-4 py-2 rounded"
         >
           Logout
-        </a>
+        </button>
       </div>
     </div>
   );

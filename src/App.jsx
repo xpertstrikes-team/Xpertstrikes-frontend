@@ -14,6 +14,11 @@ import AdminLogin from "./admin/AdminLogin";
 import AdminDashboard from "./admin/AdminDashboard";
 
 export default function App() {
+  const ProtectedRoute = ({ children }) => {
+    const isAuth = localStorage.getItem("adminAuth");
+    return isAuth ? children : <Navigate to="/admin" />;
+  };
+
   return (
     <Router>
       <div className="bg-blue-950 text-gray-900 font-inter">
@@ -37,7 +42,14 @@ export default function App() {
 
           {/* ADMIN LOGIN PAGE */}
           <Route path="/admin/login" element={<AdminLogin />} />
-          <Route path="/admin" element={<AdminDashboard />} />
+          <Route
+            path="/admin/dashboard"
+            element={
+              <ProtectedRoute>
+                <AdminDashboard />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </div>
     </Router>

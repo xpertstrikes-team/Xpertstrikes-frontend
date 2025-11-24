@@ -5,14 +5,27 @@ export default function AdminLogin() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    if (password === "xpert_admin_2025") {
-      localStorage.setItem("admin", "true");
-      navigate("/admin/dashboard");
+  const handleLogin = async () => {
+  try {
+    const res = await fetch("https://xpertstrikes-backend-f4fj.onrender.com/api/admin/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ password }),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      localStorage.setItem("adminAuth", "true");  // save login state
+      window.location.href = "/admin/dashboard"; // redirect to dashboard
     } else {
-      alert("Incorrect password!");
+      setError(data.msg);
     }
-  };
+  } catch (error) {
+    setError("Something went wrong. Try again!");
+  }
+};
+
 
   return (
     <div className="h-screen flex items-center justify-center bg-gray-900 text-white">
