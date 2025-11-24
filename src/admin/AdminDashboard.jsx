@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+
 export default function AdminDashboard() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -18,6 +19,21 @@ export default function AdminDashboard() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+  const token = localStorage.getItem("adminToken");
+
+  if (!token) return (window.location.href = "/admin/login");
+
+  fetch("https://xpertstrikes-backend-f4fj.onrender.com/api/admin/verify", {
+    headers: { Authorization: `Bearer ${token}` },
+  })
+    .then((r) => r.json())
+    .then((d) => {
+      if (!d.success) window.location.href = "/admin/login";
+    });
+}, []);
+
 
   useEffect(() => {
     fetchData();

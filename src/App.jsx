@@ -36,11 +36,8 @@ export default function App() {
           />
 
           {/* ADMIN LOGIN PAGE */}
-          <Route path="/admin" element={<AdminLogin />} />
-
-          {/* ADMIN DASHBOARD PAGE */}
-          <Route path="/admin/dashboard" element={<AdminDashboard />} />
-
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin" element={<AdminDashboard />} />
         </Routes>
       </div>
     </Router>

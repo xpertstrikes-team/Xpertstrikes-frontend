@@ -12,11 +12,24 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex space-x-8 text-lg font-medium">
-          <li className="text-gray-200 hover:text-blue-400 transition duration-300"><a href="#home">Home</a></li>
-          <li className="text-gray-200 hover:text-blue-400 transition duration-300"><a href="#about">About</a></li>
-          <li className="text-gray-200 hover:text-blue-400 transition duration-300"><a href="#services">Services</a></li>
-          <li className="text-gray-200 hover:text-blue-400 transition duration-300"><a href="#members">Members</a></li>
-          <li className="text-gray-200 hover:text-blue-400 transition duration-300"><a href="#contact">Contact</a></li>
+          <li className="text-gray-200 hover:text-blue-400 transition duration-300">
+            <a href="#home">Home</a>
+          </li>
+          <li className="text-gray-200 hover:text-blue-400 transition duration-300">
+            <a href="#about">About</a>
+          </li>
+          <li className="text-gray-200 hover:text-blue-400 transition duration-300">
+            <a href="#services">Services</a>
+          </li>
+          <li className="text-gray-200 hover:text-blue-400 transition duration-300">
+            <a href="#members">Members</a>
+          </li>
+          <li className="text-gray-200 hover:text-blue-400 transition duration-300">
+            <a href="#contact">Contact</a>
+          </li>
+          <li className="text-gray-200 hover:text-blue-400 transition duration-300">
+            <a href="/admin/login">Admin</a>
+          </li>
         </ul>
 
         {/* Mobile Menu Button */}
@@ -31,11 +44,48 @@ const Navbar = () => {
       {/* Mobile Dropdown */}
       {open && (
         <div className="md:hidden bg-gray-400/70 mx-6 my-2 p-4 rounded-lg flex flex-col space-y-3 text-center">
-          <a href="#home" className="text-blue-300 hover:text-blue-500 transition duration-300" onClick={() => setOpen(false)}>Home</a>
-          <a href="#about" className="text-blue-300 hover:text-blue-500 transition duration-300" onClick={() => setOpen(false)}>About</a>
-          <a href="#services" className="text-blue-300 hover:text-blue-500 transition duration-300" onClick={() => setOpen(false)}>Services</a>
-          <a href="#members" className="text-blue-300 hover:text-blue-500 transition duration-300" onClick={() => setOpen(false)}>Members</a>
-          <a href="#contact" className="text-blue-300 hover:text-blue-500 transition duration-300" onClick={() => setOpen(false)}>Contact</a>
+          <a
+            href="#home"
+            className="text-blue-300 hover:text-blue-500 transition duration-300"
+            onClick={() => setOpen(false)}
+          >
+            Home
+          </a>
+          <a
+            href="#about"
+            className="text-blue-300 hover:text-blue-500 transition duration-300"
+            onClick={() => setOpen(false)}
+          >
+            About
+          </a>
+          <a
+            href="#services"
+            className="text-blue-300 hover:text-blue-500 transition duration-300"
+            onClick={() => setOpen(false)}
+          >
+            Services
+          </a>
+          <a
+            href="#members"
+            className="text-blue-300 hover:text-blue-500 transition duration-300"
+            onClick={() => setOpen(false)}
+          >
+            Members
+          </a>
+          <a
+            href="#contact"
+            className="text-blue-300 hover:text-blue-500 transition duration-300"
+            onClick={() => setOpen(false)}
+          >
+            Contact
+          </a>
+          <a
+            href="/admin/login"
+            className="text-blue-300 hover:text-blue-500 transition duration-300"
+            onClick={() => setOpen(false)}
+          >
+            Admin
+          </a>
         </div>
       )}
     </nav>
