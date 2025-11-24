@@ -1,14 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 const ServiceModal = ({ service, onClose }) => {
-  const [form, setForm] = React.useState({
+  const [form, setForm] = useState({
     name: "",
     company: "",
     email: "",
     phone: "",
-    service: service?.title || "",
-    message: "",
+    service: "",
+    requirements: "",
   });
+
+  // Fix: Update form.service only AFTER service is loaded
+  useEffect(() => {
+    if (service?.title) {
+      setForm((prev) => ({ ...prev, service: service.title }));
+    }
+  }, [service]);
+
+  if (!service) return null; // prevent rendering before data exists
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,38 +38,47 @@ const ServiceModal = ({ service, onClose }) => {
       );
 
       const data = await res.json();
-
-      if (!res.ok) throw new Error(data.error || "Failed");
+      if (!res.ok) throw new Error(data.error);
 
       alert("Booking submitted!");
       onClose();
     } catch (err) {
-      alert("Failed to submit");
+      console.error(err);
+      alert("Failed to submit form");
     }
   };
 
-  if (!service) return null;
-
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
-      <div className="glass w-[90%] max-w-lg p-6 rounded-2xl relative">
-        <button onClick={onClose} className="absolute top-3 right-3 text-white text-2xl">&times;</button>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
+      <div className="bg-white/10 backdrop-blur-xl p-6 rounded-2xl w-[90%] max-w-lg relative">
 
-        <h2 className="text-3xl font-bold text-blue-400 mb-2">{service.title}</h2>
-        <p className="text-gray-200 mb-2">{service.fullDesc}</p>
+        <button
+          onClick={onClose}
+          className="absolute top-3 right-3 text-white text-2xl"
+        >
+          &times;
+        </button>
+
+        <h2 className="text-3xl font-bold text-blue-400 mb-2">
+          {service?.title}
+        </h2>
+        <p className="text-gray-200 mb-4">{service?.fullDesc}</p>
 
         <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
-          <input name="name" onChange={handleChange} value={form.name} className="p-2 rounded-lg bg-white/10 border text-white" placeholder="Name" />
-          <input name="company" onChange={handleChange} value={form.company} className="p-2 rounded-lg bg-white/10 border text-white" placeholder="Company" />
-          <input name="email" onChange={handleChange} value={form.email} className="p-2 rounded-lg bg-white/10 border text-white" placeholder="Email" />
-          <input name="phone" onChange={handleChange} value={form.phone} className="p-2 rounded-lg bg-white/10 border text-white" placeholder="Phone" />
-          <input name="service" value={service.title} readOnly className="p-2 rounded-lg bg-white/10 border text-white" />
-          <textarea name="requirements" onChange={handleChange} value={form.message} className="p-2 rounded-lg bg-white/10 border text-white" placeholder="Requirements..." />
+          <input name="name" value={form.name} onChange={handleChange} placeholder="Name" className="p-2 rounded bg-white/10 text-white"/>
+          <input name="company" value={form.company} onChange={handleChange} placeholder="Company" className="p-2 rounded bg-white/10 text-white"/>
+          <input name="email" value={form.email} onChange={handleChange} placeholder="Email" className="p-2 rounded bg-white/10 text-white"/>
+          <input name="phone" value={form.phone} onChange={handleChange} placeholder="Phone" className="p-2 rounded bg-white/10 text-white"/>
 
-          <button type="submit" className="bg-blue-600 text-white py-2 rounded-lg">Book Now</button>
+          <input name="service" value={form.service} readOnly className="p-2 rounded bg-white/10 text-white" />
+
+          <textarea name="requirements" value={form.requirements} onChange={handleChange} placeholder="Requirements..." className="p-2 rounded bg-white/10 text-white"></textarea>
+
+          <button type="submit" className="bg-blue-600 text-white p-2 rounded">Book Now</button>
         </form>
       </div>
     </div>
   );
 };
+
 export default ServiceModal;
