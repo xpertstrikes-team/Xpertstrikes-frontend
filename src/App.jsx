@@ -12,6 +12,8 @@ import Footer from "./sections/Footer";
 // ADD THESE TWO IMPORTS
 import AdminLogin from "./admin/AdminLogin";
 import AdminDashboard from "./admin/AdminDashboard";
+import ForgotPassword from "./admin/ForgotPassword";
+import ResetPassword from "./admin/ResetPassword";
 
 export default function App() {
   const ProtectedRoute = ({ children }) => {
@@ -45,6 +47,8 @@ export default function App() {
 
           {/* ADMIN LOGIN PAGE */}
           <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin/forgot" element={<ForgotPassword />} />
+          <Route path="/admin/reset" element={<ResetPassword />} />
           <Route
             path="/admin/dashboard"
             element={

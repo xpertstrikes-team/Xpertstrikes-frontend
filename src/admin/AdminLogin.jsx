@@ -95,6 +95,15 @@ export default function AdminLogin() {
         >
           {loading ? "Logging in..." : "Login"}
         </button>
+
+        <div className="flex justify-between items-center mt-3 text-xs text-gray-400">
+          <a href="/admin/forgot" className="underline">
+            Forgot password?
+          </a>
+          <a href="/admin/reset" className="underline">
+            Have a reset link?
+          </a>
+        </div>
       </div>
     </div>
   );
