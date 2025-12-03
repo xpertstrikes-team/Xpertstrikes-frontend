@@ -11,7 +11,7 @@ export default function AdminDashboard() {
   const navigate = useNavigate();
 
   // Use frontend env variable so local and deployed backends work the same way
-  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:10000";
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "https://xpertstrikes-backend-f4fj.onrender.com";
 
   const logout = () => {
     localStorage.removeItem("adminToken");
@@ -48,7 +48,7 @@ export default function AdminDashboard() {
       const token = localStorage.getItem("adminToken");
       const res = await fetch(`${BACKEND_URL}/api/contact/${id}`, {
         method: "DELETE",
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
       });
 
       const result = await res.json();

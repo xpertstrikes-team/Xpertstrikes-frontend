@@ -8,8 +8,7 @@ export default function AdminLogin() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const BACKEND_URL =
-    import.meta.env.VITE_BACKEND_URL || "http://localhost:10000";
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "https://xpertstrikes-backend-f4fj.onrender.com";
 
   const handleLogin = async () => {
     setError("");

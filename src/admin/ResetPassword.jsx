@@ -8,7 +8,7 @@ export default function ResetPassword(){
   const [newPassword, setNewPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
-  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:10000";
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "https://xpertstrikes-backend-f4fj.onrender.com";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
