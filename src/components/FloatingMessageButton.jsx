@@ -9,7 +9,7 @@ export default function FloatingMessageButton() {
     email: "",
     phone: "",
     service: "",
-    requirements: "",
+    message: "",
   });
   const toggleForm = () => setIsOpen(!isOpen);
   const handleChange = (e) => {
@@ -81,7 +81,7 @@ export default function FloatingMessageButton() {
               {" "}
               <input
                 type="text"
-                name="personName"
+                name="name"
                 placeholder="Your Name"
                 value={formData.name}
                 onChange={handleChange}
@@ -90,7 +90,7 @@ export default function FloatingMessageButton() {
               />{" "}
               <input
                 type="text"
-                name="companyName"
+                name="company"
                 placeholder="Company Name"
                 value={formData.company}
                 onChange={handleChange}
@@ -134,7 +134,7 @@ export default function FloatingMessageButton() {
                 </option>{" "}
               </select>{" "}
               <textarea
-                name="requirements"
+                name="message"
                 placeholder="Describe your requirements..."
                 rows="3"
                 value={formData.message}
