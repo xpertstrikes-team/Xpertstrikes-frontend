@@ -15,7 +15,8 @@ import AdminDashboard from "./admin/AdminDashboard";
 
 export default function App() {
   const ProtectedRoute = ({ children }) => {
-    const isAuth = localStorage.getItem("adminAuth");
+    // check the token that AdminLogin stores
+    const isAuth = !!localStorage.getItem("adminToken");
     return isAuth ? children : <Navigate to="/admin" />;
   };
 
@@ -23,6 +24,8 @@ export default function App() {
     <Router>
       <div className="bg-blue-950 text-gray-900 font-inter">
         <Routes>
+          {/* Redirect bare /admin to the login page so routes like /admin work */}
+          <Route path="/admin" element={<Navigate to="/admin/login" replace />} />
           {/* PUBLIC WEBSITE ROUTE */}
           <Route
             path="/"

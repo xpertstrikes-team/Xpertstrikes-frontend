@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function AdminDashboard() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  const BACKEND_URL = "https://xpertstrikes-backend-f4fj.onrender.com";
+  // Use frontend env variable so local and deployed backends work the same way
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:10000";
 
   const logout = () => {
     localStorage.removeItem("adminToken");
-    window.location.href = "/admin";
+    navigate("/admin/login");
   };
 
   const fetchData = async () => {
@@ -22,7 +25,8 @@ export default function AdminDashboard() {
       if (res.status === 401) {
         // unauthorized
         localStorage.removeItem("adminToken");
-        return (window.location.href = "/admin/login");
+        navigate("/admin/login");
+        return;
       }
 
       const result = await res.json();
@@ -45,6 +49,7 @@ export default function AdminDashboard() {
       });
 
       const result = await res.json();
+      if (res.status === 403) throw new Error("You do not have permission to delete");
       if (!res.ok) throw new Error(result.error || "Delete failed");
 
       // remove from state
@@ -65,9 +70,11 @@ export default function AdminDashboard() {
     })
       .then((r) => r.json())
       .then((d) => {
-        if (!d.success) window.location.href = "/admin/login";
+        if (!d.success) return navigate("/admin/login");
+        // store role for conditional UI
+        if (d.role) localStorage.setItem("adminRole", d.role);
       })
-      .catch(() => (window.location.href = "/admin/login"));
+      .catch(() => navigate("/admin/login"));
   }, []);
 
   useEffect(() => {
@@ -111,12 +118,16 @@ export default function AdminDashboard() {
                     {new Date(item.createdAt).toLocaleString()}
                   </td>
                   <td className="p-3 border border-gray-700">
-                    <button
-                      onClick={() => handleDelete(item._id)}
-                      className="bg-red-600 px-3 py-1 rounded hover:bg-red-500"
-                    >
-                      Delete
-                    </button>
+                    {localStorage.getItem("adminRole") === "admin" ? (
+                      <button
+                        onClick={() => handleDelete(item._id)}
+                        className="bg-red-600 px-3 py-1 rounded hover:bg-red-500"
+                      >
+                        Delete
+                      </button>
+                    ) : (
+                      <span className="text-sm text-gray-400">No delete access</span>
+                    )}
                   </td>
                 </tr>
               ))}
