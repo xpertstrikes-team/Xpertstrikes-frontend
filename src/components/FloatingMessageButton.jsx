@@ -132,6 +132,7 @@ export default function FloatingMessageButton() {
                 <option value="Mobile App Development">
                   Mobile App Development
                 </option>{" "}
+                <option value="Portfolio Design">Portfolio Design</option>{" "}
               </select>{" "}
               <textarea
                 name="message"

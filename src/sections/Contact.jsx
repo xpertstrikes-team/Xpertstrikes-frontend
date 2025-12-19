@@ -205,6 +205,7 @@ const Contact = () => {
           <option value="Content Writing">Content Writing</option>
           <option value="Data Analytics">Data Analytics</option>
           <option value="Mobile App Development">Mobile App Development</option>
+          <option value="Portfolio Design">Portfolio Design</option>
         </select>
 
         <textarea

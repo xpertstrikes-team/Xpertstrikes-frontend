@@ -5,6 +5,7 @@ import service4 from "../assets/service4.png";
 import service5 from "../assets/service5.jpg";
 import service6 from "../assets/service6.png";
 import service7 from "../assets/service7.png";
+import service8 from "../assets/service8.png";
 
 const servicesData = [
   {
@@ -62,6 +63,14 @@ const servicesData = [
     fullDesc: "Developing user-friendly mobile applications for iOS and Android platforms.",
     handledBy: "App Masters",
     image: service7,
+  },
+  {
+    id: 8,
+    title: "Portfolio Design",
+    shortDesc: "Showcase Your Work",
+    fullDesc: "Design clean, modern portfolio websites and visual portfolios that highlight skills and projects.",
+    handledBy: "Team Alpha",
+    image: service8,
   }
 ];
 
