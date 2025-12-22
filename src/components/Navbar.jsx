@@ -4,7 +4,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 w-full glass z-50">
+    <nav className="fixed top-0 left-0 right-0 w-full glass z-50" style={{ position: 'fixed' }}>
       <div className="flex justify-between items-center px-6 md:px-12 py-4">
         <h1 className="text-2xl md:text-3xl font-bold tracking-wide text-blue-300">
           Xpert<span className="text-blue-500">Strikes</span>
